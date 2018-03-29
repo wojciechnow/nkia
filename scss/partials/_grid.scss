@@ -1,0 +1,32 @@
+$columns: 12;
+$baseColumnWidth: 100%/$columns;
+
+
+.container {
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  border: 1px solid red;
+
+  .row {
+    &:before, &:after {
+      content: "";
+      display: block;
+      clear: both;
+      border: 1px solid black
+    }
+
+    [class*='col-'] {  // wszystkie klasy, które rozpoczynają się od col-
+      float: left;
+      width: $baseColumnWidth;
+      min-height: 1px;
+      padding: 10px;  //ladnie
+    }
+
+    @for $i from 1 through $columns {
+      .col-#{$i}{  // trzeba interpolację, żeby wstawiały się kolejne liczby (nr kolumn)
+        width: $baseColumnWidth * $i;
+      }
+    }
+  }  // eo row
+}   // eo container
