@@ -3,7 +3,7 @@ module.exports={
 
 
 
-    entry:["./js/projekt.jsx"],
+    entry:['whatwg-fetch',"./js/projekt.jsx"],
 
     output: {
 

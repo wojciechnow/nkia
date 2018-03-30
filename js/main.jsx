@@ -1,42 +1,78 @@
 import React from "react";
+
 import Users from './users.jsx'
 
+import Posts from './posts.jsx'
+/* Main section of App, hold array of posts data and usersId from users.jsx*/
+
 class Main extends React.Component {
+
     constructor(props){
+
         super(props);
+
         this.state = {
-            page: [],
+
             posts:[],
+
+            userId: null
+
         }
-}
-handleClick = (givenElem) => {
+
+    }
+
+    handleClick = (givenElem) => {
+
         this.setState ({
-            posts: this.posts.id[givenElem],
+
+            userId: givenElem
+
         })
 
-}
-componentDidMount(){
-        fetch('https://jsonplaceholder.typicode.com/comments')
+
+
+
+
+    }
+
+    componentDidMount(){
+
+        fetch('https://jsonplaceholder.typicode.com/posts')
+
             .then(data=>data.json())
+
             .then(data =>{
-                console.log(data)
+
+                console.log(data);
+
                 this.setState({
+
                     posts: data
+
                 })
+
             })
-}
+
+    }
+
     render (){
 
+
+
         return <main className="container">
-            {this.state.page}
-            {/*<div> {this.state.posts.map((e,i)=>{*/}
-                {/*return <div key={i}>{e.`{this.state.page}`}</div>*/}
-                {/*}*/}
-            {/*)}</div>*/}
+
+
             <section className="row">
-            <Users click={this.handleClick}/>
+
+                <Users click={this.handleClick}/>
+
             </section>
+
+           <Posts posts={this.state.posts} userId={this.state.userId}/>
         </main>
+
     }
+
 }
+
 export {Main}
